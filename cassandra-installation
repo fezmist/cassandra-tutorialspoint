@@ -1,0 +1,10 @@
+cassandra installation - Windows:
+=================================
+1. Download datastax community edition
+2. bug with cdc_raw_directory:
+error details:
+2017-03-20 23:07:47 Commons Daemon procrun stderr initialized
+cdc_raw_directory is missing and -Dcassandra.storagedir is not set
+
+to resolve this issue set the cdc_raw_directory: C:\Program Files\DataStax-DDC\data\cdc_raw
+link: http://stackoverflow.com/questions/40261374/datastax-ddc-service-will-not-start

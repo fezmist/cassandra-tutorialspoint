@@ -1,0 +1,33 @@
+Cassandra tutorials: 
+====================
+(tutorialspoint)
+
+1. Creating a Keyspace using Cqlsh
+CREATE KEYSPACE <identifier> WITH <properties>
+
+CREATE KEYSPACE “KeySpace Name”
+WITH replication = {'class': ‘Strategy name’, 'replication_factor' : ‘No.Of   replicas’};
+
+CREATE KEYSPACE “KeySpace Name”
+WITH replication = {'class': ‘Strategy name’, 'replication_factor' : ‘No.Of  replicas’}
+
+AND durable_writes = ‘Boolean value’;
+
+cqlsh> CREATE KEYSPACE tutorialspoint 
+WITH REPLICATION = {'class':'SimpleStrategy', 'replication_factor: 1'};
+
+//get keyspaces
+cqlsh> SELECT * FROM system_schema.keyspaces;
+
+
+cqlsh> CREATE TABLE user(
+lastname varchar primary key,
+firstname varchar,
+age int,
+city varchar,
+email varchar
+);
+
+cqlsh> INSERT INTO user (lastname, firstname, age, city, email) VALUES ('Bloggs', 'Joe', 35, 'London', 'joe.bloggs@example.com');
+
+cqlsh> SELECT * FROM user WHERE lastname = 'Bloggs';

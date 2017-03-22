@@ -1,0 +1,35 @@
+cassandra notes:
+================
+overview of each file:
+CRC - A single CRC of the data file
+Compression - the name of the compressio engine used
+Data - The SSTable data stored in sorted order by Partition/Cluster Key
+Digest - one or more CRCs one per 2GB segment of the data file
+Filter - The bloom filter -  folded hashes of all key values in the data file
+Index - a list of all Partition/Cluster Keys
+Statistics - Hodgepodge of metadata about the SSTable
+Summary - a list of some of the Partition/Cluster keys - think second level index
+TOC - text list of files
+
+CCM - Cassandra Cluster Manager
+https://github.com/pcmanus.com
+ccm create --vnodes --nodes=1 -v 2.1.9 --start ver-219
+ccm node1 nodetool status
+
+hexdump mb-1-big-CRC.db
+
+cat mb-1-big-Digest.crc32
+
+cat mb-1-big-TOC.txt
+
+hexdump -c mb-1-big-Statistics.db
+
+conclusions:
+----------- 
+- cassandra 3.0 SSTable format is considerably more compact
+- field names are no longer stored in the data file field ids are used instead
+- TTL and timestamps are grouped
+- TTL and timestamp differeces are stored as deltas
+- SSTables are sorted by partition key token values
+- statistics file is full of bunch of different stuff
+- Data, Summary, Filter and Statistics have important useful stuff
