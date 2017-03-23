@@ -33,3 +33,19 @@ conclusions:
 - SSTables are sorted by partition key token values
 - statistics file is full of bunch of different stuff
 - Data, Summary, Filter and Statistics have important useful stuff
+
+
+Bloom filter:
+-------------
+stage 1: all bits are set to 0
+whenever a value is hashed using fnv, murmur, etc. hashing algorithms and then hash key is populated in the index which is a set of true/false value by setting relevant bits to 1 
+Bloom filter calculates the probability of existence of the hash in the index thus confirming if partition contains the data or not.
+Any hash function can be used as long as it returns the same hash for a given value.
+
+positive - yes data is available
+false positive - it matches the index in the vector
+negative - not there (very useful result)
+
+performance improved by:
+- more hash functions
+- false positive percentage (less)
